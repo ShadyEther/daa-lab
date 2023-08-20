@@ -8,33 +8,34 @@ void swap(int *a, int *b)
     *b = tmp;
 }
 
-int partition(int *arr, int low, int high)
+int partition(int arr[], int low, int high)
 {
     int pivot = arr[low];
-    int i = low, j = high;
+    int i = low - 1;
+    int j = high + 1;
 
-    while (i < j)
+    while (1)
     {
-        
-        do{
+        do
+        {
             i++;
-        }
-        while (arr[i] <= pivot);
+        } while (arr[i] < pivot);
+
         do
         {
             j--;
-        }
-        while (arr[j] > pivot);
-        if (i < j)
+        } while (arr[j] > pivot);
+
+        if (i >= j)
         {
-            swap(&arr[i], &arr[j]);
+            return j;
         }
+
+        swap(&arr[i], &arr[j]);
     }
-    swap(&arr[j], &arr[low]);
-    return j; // returns pivotal position
 }
 
-void quickSort(int *arr, int low, int high)
+void quickSort(int arr[], int low, int high)
 {
     if (low < high)
     {
@@ -60,7 +61,8 @@ int main()
     {
         printf("%d ", arr[i]);
     }
-    quickSort(arr, 0, size);
+    printf("\nSorted array---\n");
+    quickSort(arr, 0, size - 1);
     printf("\nSorted array---\n");
     for (int i = 0; i < size; i++)
     {
