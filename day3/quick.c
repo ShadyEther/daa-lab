@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+int steps=0;
 
 void swap(int *a, int *b)
 {
@@ -38,6 +39,7 @@ void quickSort(int *arr, int low, int high)
 {
     if (low < high)
     {
+        steps++;
         int j = partition(arr, low, high);
         quickSort(arr, low, j);
         quickSort(arr, j + 1, high);
@@ -68,6 +70,7 @@ int main()
     }
 
     free(arr); // Don't forget to free the allocated memory.
+    printf("\nSteps: %d\n",steps);
 
     return 0;
 }
